@@ -71,3 +71,10 @@ while still catching the common case with a single `instanceof TypeError`.
 `fromRoman('MMMM')`. If you are importing Roman numerals from another system
 that used additive or mixed notation, normalise them before calling this
 library — or write a permissive parser, because this one deliberately is not.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
